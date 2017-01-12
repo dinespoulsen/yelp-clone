@@ -21,10 +21,10 @@ def create_restaurant
   click_button 'Create Restaurant'
 end
 
-def review_subway
+def review_subway(thoughts = 'too short', rating = '3')
   visit '/restaurants'
   click_link 'Review Subway'
-  fill_in "Thoughts", with: "too short"
-  select '2', from: 'Rating'
+  fill_in "Thoughts", with: thoughts
+  select rating, from: 'Rating'
   click_button 'Leave Review'
 end

@@ -13,6 +13,8 @@ feature 'reviewing' do
     expect(page).to have_content 'too short'
   end
 
+
+
   scenario 'allows users to only leave one review' do
     sign_up
     review_subway
@@ -38,13 +40,19 @@ feature 'reviewing' do
     sign_up
     review_subway
     click_link 'Sign out'
-    sign_up( email: 'chris@hotmail.com', password: 'christopher')
+    sign_up(email: 'chris@hotmail.com', password: 'christopher')
     click_link 'Subway'
     click_link 'Delete Review'
     expect(page).to have_content 'You can only delete reviews you have created'
   end
 
-
-
+  scenario 'displays an average rating for all reviews' do
+    sign_up
+    review_subway
+    click_link 'Sign out'
+    sign_up(email: 'chris@hotmail.com', password: 'christopher')
+    review_subway('Great', '4')
+    expect(page).to have_content 'Average rating: 3.5'
+  end
 
 end
