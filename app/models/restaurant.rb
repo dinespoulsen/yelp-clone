@@ -9,7 +9,7 @@ class Restaurant < ApplicationRecord
 
   def average_rating
      if reviews.any?
-       reviews.inject(0) { |sum, review| sum + review.rating } / reviews.length.to_f
+       reviews.average(:rating)
      else
        'N/A'
     end
