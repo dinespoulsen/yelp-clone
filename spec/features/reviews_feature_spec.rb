@@ -31,4 +31,17 @@ feature 'reviewing' do
     expect(page).to have_content 'You have already reviewed this restaurant'
   end
 
+  scenario 'reviews show on restaurant page' do
+    sign_up
+    visit '/restaurants'
+    click_link 'Review Subway'
+    fill_in "Thoughts", with: "too short"
+    select '2', from: 'Rating'
+    click_button 'Leave Review'
+    click_link 'Subway'
+    expect(page).to have_content 'too short'
+    # click_button 'Delete Review'
+    # expect(page).not_to have_content 'too short'
+  end
+
 end
