@@ -6,5 +6,7 @@
     %p #{review.thoughts}
     %p #{review.rating}
     = link_to 'Delete Review', review_path(review), method: :delete
+    = link_to 'Endorse Review', review_endorsements_path(review), method: :post
+    %p= pluralize review.endorsements.count, 'endorsement'
 - else
   %h3 No reviews yet
