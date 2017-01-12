@@ -8,40 +8,28 @@ feature 'reviewing' do
 
   scenario 'allows users to leave a review using a form' do
     sign_up
-    visit '/restaurants'
-    click_link 'Review Subway'
-    fill_in "Thoughts", with: "too short"
-    select '2', from: 'Rating'
-    click_button 'Leave Review'
+    review_subway
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'too short'
   end
 
   scenario 'allows users to only leave one review' do
     sign_up
-    visit '/restaurants'
-    click_link 'Review Subway'
-    fill_in "Thoughts", with: "too short"
-    select '2', from: 'Rating'
-    click_button 'Leave Review'
-    click_link 'Review Subway'
-    fill_in "Thoughts", with: "too short"
-    select '3', from: 'Rating'
-    click_button 'Leave Review'
+    review_subway
+    review_subway
     expect(page).to have_content 'You have already reviewed this restaurant'
   end
 
   scenario 'reviews show on restaurant page' do
     sign_up
-    visit '/restaurants'
-    click_link 'Review Subway'
-    fill_in "Thoughts", with: "too short"
-    select '2', from: 'Rating'
-    click_button 'Leave Review'
-    click_link 'Subway'
+    review_subway
     expect(page).to have_content 'too short'
-    # click_button 'Delete Review'
-    # expect(page).not_to have_content 'too short'
   end
-
+  scenario 'reviews can be deleted' do
+    sign_up
+    review_subway
+    click_link 'Subway'
+    click_link 'Delete Review'
+    expect(page).not_to have_content 'too short'
+  end
 end
