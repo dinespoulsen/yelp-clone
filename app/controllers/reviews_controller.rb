@@ -2,6 +2,15 @@ class ReviewsController < ApplicationController
 
   before_action :authenticate_user!
 
+  before_action :require_permission, :only => [:destroy]
+
+  def require_permission
+    if current_user != Review.find(params[:id]).user
+      flash[:notice] = 'You can only delete reviews you have created'
+      redirect_to "/restaurants/#{params[:restaurant_id]}"
+    end
+  end
+
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
@@ -28,10 +37,6 @@ class ReviewsController < ApplicationController
     @review.destroy
     redirect_to "/restaurants/#{params[:restaurant_id]}"
   end
-
-
-
-
 
   private
 

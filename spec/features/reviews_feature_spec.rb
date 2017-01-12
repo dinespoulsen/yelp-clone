@@ -25,6 +25,7 @@ feature 'reviewing' do
     review_subway
     expect(page).to have_content 'too short'
   end
+
   scenario 'reviews can be deleted' do
     sign_up
     review_subway
@@ -32,4 +33,18 @@ feature 'reviewing' do
     click_link 'Delete Review'
     expect(page).not_to have_content 'too short'
   end
+
+  scenario 'can not delete review if you have not created it' do
+    sign_up
+    review_subway
+    click_link 'Sign out'
+    sign_up( email: 'chris@hotmail.com', password: 'christopher')
+    click_link 'Subway'
+    click_link 'Delete Review'
+    expect(page).to have_content 'You can only delete reviews you have created'
+  end
+
+
+
+
 end
