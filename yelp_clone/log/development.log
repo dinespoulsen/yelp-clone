@@ -1,0 +1,31 @@
+Started GET "/" for ::1 at 2017-01-13 09:55:01 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RestaurantsController#index as HTML
+  Rendering restaurants/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "restaurants"[0m
+  [1m[36mRestaurant Load (0.3ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  [1m[36mReview Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."restaurant_id" = $1 LIMIT $2[0m  [["restaurant_id", 10], ["LIMIT", 1]]
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."restaurant_id" = $1[0m  [["restaurant_id", 10]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."restaurant_id" = $1[0m  [["restaurant_id", 10]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "endorsements" WHERE "endorsements"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "endorsements" WHERE "endorsements"."review_id" = $1[0m  [["review_id", 4]]
+  Rendered restaurants/index.html.erb within layouts/application (76.3ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 1014ms (Views: 983.3ms | ActiveRecord: 12.9ms)
+
+
+Started GET "/" for ::1 at 2017-01-13 09:55:11 +0000
+Processing by RestaurantsController#index as HTML
+  Rendering restaurants/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "restaurants"[0m
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  [1m[36mReview Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "reviews" WHERE "reviews"."restaurant_id" = $1 LIMIT $2[0m  [["restaurant_id", 10], ["LIMIT", 1]]
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."restaurant_id" = $1[0m  [["restaurant_id", 10]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "reviews" WHERE "reviews"."restaurant_id" = $1[0m  [["restaurant_id", 10]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "endorsements" WHERE "endorsements"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "endorsements" WHERE "endorsements"."review_id" = $1[0m  [["review_id", 4]]
+  Rendered restaurants/index.html.erb within layouts/application (10.8ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 43ms (Views: 38.0ms | ActiveRecord: 2.1ms)
+
+

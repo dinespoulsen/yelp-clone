@@ -40,6 +40,7 @@ gem 'shoulda'
 gem 'poltergeist'
 gem 'database_cleaner'
 gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
