@@ -1,4 +1,5 @@
 %p= @restaurant.name
+= image_tag @restaurant.image.url(:thumb)
 %p= @restaurant.description
 %p Average rating: #{@restaurant.average_rating}
 - if @restaurant.reviews.any?
