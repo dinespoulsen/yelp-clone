@@ -1,5 +1,9 @@
 Rails.application.configure do
 
+  PAPERCLIP_STORAGE_OPTIONS = {:storage => :s3,
+                               :s3_credentials => "#{Rails.root}/config/s3.yml",
+                               :path => "/:style/:filename"}
+
   config.paperclip_defaults = {
     storage: :s3,
     s3_credentials: {
@@ -7,8 +11,15 @@ Rails.application.configure do
       access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
       secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
       s3_region: ENV.fetch('AWS_REGION'),
-    }
+    },
+    url: 'makers-yelp-clone-474.s3.amazonaws.com',
+    path: '/:class/:attachment/:id_partition/:style/:filename',
+    s3_host_name: 's3-eu-west-2.amazonaws.com',
   }
+
+  # Paperclip::Attachment.default_options[:url] = 'makers-yelp-clone-474.s3.amazonaws.com'
+  # Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'
+  # Paperclip::Attachment.default_options[:s3_host_name] = 's3-eu-west-2.amazonaws.com'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
