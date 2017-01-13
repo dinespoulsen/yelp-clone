@@ -47,6 +47,7 @@ feature 'restaurants' do
         click_button 'Create Restaurant'
         expect(page).to have_content 'Subway'
         expect(current_path).to eq '/restaurants'
+        expect(page).to have_css("img[src*='IMG_20170105_112736']")
       end
 
       context 'an invalid restaurant' do
